@@ -47,7 +47,18 @@ public class Principal {
         }
         System.out.println("\n--- CADASTRO DE ABASTECIMENTO ---");
     }
-    
+    System.out.print("Digite a placa do veiculo: ");
+        String placa = entrada.nextLine();
+
+        double lit = -1;
+        while (lit <= 0) {
+            System.out.print("Digite a quantidade de litros: ");
+            try {
+                lit = Double.parseDouble(entrada.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada invalida!");
+            }
+        }
     public static double calcularConsumoMedio(double km, double lit) { return 0; }
     public static double calcularCustoPorKm(double valor, double km) { return 0; }
     public static void exibirRelatorioConsumo() {}
