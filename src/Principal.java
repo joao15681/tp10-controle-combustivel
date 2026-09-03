@@ -59,6 +59,15 @@ public class Principal {
                 System.out.println("Entrada invalida!");
             }
         }
+        double valor = -1;
+        while (valor <= 0) {
+            System.out.print("Digite o valor total pago (R$): ");
+            try {
+                valor = Double.parseDouble(entrada.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada invalida!");
+            }
+        }
     public static double calcularConsumoMedio(double km, double lit) { return 0; }
     public static double calcularCustoPorKm(double valor, double km) { return 0; }
     public static void exibirRelatorioConsumo() {}
