@@ -34,9 +34,10 @@ public class Principal {
     }
 
     public static void exibirMenu() {
-        System.out.println("1 - Cadastrar Abastecimento");
-        System.out.println("2 - Relatorio de Consumo");
-        System.out.println("0 - Sair");
+        System.out.println("=== CONTROLE DE COMBUSTIVEL (MODULO A) ===");
+        System.out.println("1. Registrar Abastecimento");
+        System.out.println("2. Relatorio de Consumo");
+        System.out.println("0. Sair");
         System.out.print("Escolha: ");
     }
 
@@ -46,8 +47,8 @@ public class Principal {
             return;
         }
         System.out.println("\n--- CADASTRO DE ABASTECIMENTO ---");
-    }
-    System.out.print("Digite a placa do veiculo: ");
+
+        System.out.print("Digite a placa do veiculo: ");
         String placa = entrada.nextLine();
 
         double lit = -1;
@@ -59,6 +60,7 @@ public class Principal {
                 System.out.println("Entrada invalida!");
             }
         }
+
         double valor = -1;
         while (valor <= 0) {
             System.out.print("Digite o valor total pago (R$): ");
@@ -68,6 +70,26 @@ public class Principal {
                 System.out.println("Entrada invalida!");
             }
         }
+
+        double km = -1;
+        while (km <= 0) {
+            System.out.print("Digite a quilometragem percorrida (km): ");
+            try {
+                km = Double.parseDouble(entrada.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada invalida!");
+            }
+        }
+
+        placas[totalRegistros] = placa;
+        litros[totalRegistros] = lit;
+        valoresPagos[totalRegistros] = valor;
+        quilometragens[totalRegistros] = km;
+        totalRegistros++;
+
+        System.out.println("Abastecimento cadastrado com sucesso!\n");
+    }
+
     public static double calcularConsumoMedio(double km, double lit) { return 0; }
     public static double calcularCustoPorKm(double valor, double km) { return 0; }
     public static void exibirRelatorioConsumo() {}
