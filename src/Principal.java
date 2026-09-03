@@ -34,7 +34,7 @@ public class Principal {
     }
 
     public static void exibirMenu() {
-        System.out.println("=== CONTROLE DE COMBUSTIVEL (MODULO A) ===");
+        System.out.println(" Controle de Combustivel ");
         System.out.println("1. Registrar Abastecimento");
         System.out.println("2. Relatorio de Consumo");
         System.out.println("0. Sair");
@@ -46,7 +46,7 @@ public class Principal {
             System.out.println("Erro: Capacidade maxima de registros atingida!");
             return;
         }
-        System.out.println("\n--- CADASTRO DE ABASTECIMENTO ---");
+        System.out.println("\nCadastro de Abastecimento");
 
         System.out.print("Digite a placa do veiculo: ");
         String placa = entrada.nextLine();
