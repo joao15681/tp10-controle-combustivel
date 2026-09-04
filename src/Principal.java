@@ -21,7 +21,8 @@ public class Principal {
             }
             switch (opcao) {
                 case 1: cadastrarAbastecimento(entrada); break;
-                case 2: exibirRelatorioConsumo(); break;
+                case 2: exibirRelatorioConsumo();
+                break;
                 case 0: System.out.println("Saindo..."); break;
                 default: System.out.println("Opcao invalida!");
             }
@@ -56,5 +57,21 @@ public class Principal {
             System.out.println("\nNenhum abastecimento cadastrado ainda.\n");
             return;
         }
+
+        System.out.println("\n==========================================================================");
+        System.out.println("                       RELATORIO DE CONSUMO E FROTA                       ");
+        System.out.println("==========================================================================");
+        System.out.printf("%-10s | %-10s | %-12s | %-10s | %-10s | %-10s\n", 
+                          "PLACA", "LITROS", "VALOR (R$)", "KM", "KM/L", "R$/KM");
+        System.out.println("--------------------------------------------------------------------------");
+
+        for (int i = 0; i < totalRegistros; i++) {
+            double kmL = calcularConsumoMedio(quilometragens[i], litros[i]);
+            double rsKm = calcularCustoPorKm(valoresPagos[i], quilometragens[i]);
+
+            System.out.printf("%-10s | %-10.2f | R$ %-9.2f | %-10.2f | %-10.2f | R$ %-8.2f\n",
+                              placas[i], litros[i], valoresPagos[i], quilometragens[i], kmL, rsKm);
+        }
+    
     }
 }
