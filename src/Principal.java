@@ -1,3 +1,4 @@
+java
 import java.util.Scanner;
 
 public class Principal {
@@ -41,7 +42,54 @@ public class Principal {
         System.out.print("Opcao desejada: ");
     }
 
-    public static void cadastrarAbastecimento(Scanner entrada) {}
+    public static void cadastrarAbastecimento(Scanner entrada) {
+        if (totalRegistros >= CAPACIDADE) {
+            System.out.println("Erro: Capacidade maxima de registros atingida!");
+            return;
+        }
+        System.out.println("\nCadastro de Abastecimento");
+
+        System.out.print("Digite a placa do veiculo: ");
+        String placa = entrada.nextLine();
+
+        double lit = -1;
+        while (lit <= 0) {
+            System.out.print("Digite a quantidade de litros: ");
+            try {
+                lit = Double.parseDouble(entrada.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada invalida!");
+            }
+        }
+
+        double valor = -1;
+        while (valor <= 0) {
+            System.out.print("Digite o valor total pago (R$): ");
+            try {
+                valor = Double.parseDouble(entrada.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada invalida!");
+            }
+        }
+
+        double km = -1;
+        while (km <= 0) {
+            System.out.print("Digite a quilometragem percorrida (km): ");
+            try {
+                km = Double.parseDouble(entrada.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada invalida!");
+            }
+        }
+
+        placas[totalRegistros] = placa;
+        litros[totalRegistros] = lit;
+        valoresPagos[totalRegistros] = valor;
+        quilometragens[totalRegistros] = km;
+        totalRegistros++;
+
+        System.out.println("Abastecimento cadastrado com sucesso!\n");
+    }
 
     public static double calcularConsumoMedio(double km, double lit) {
         if (lit == 0) return 0;
