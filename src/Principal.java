@@ -34,10 +34,11 @@ public class Principal {
     }
 
     public static void exibirMenu() {
-        System.out.println("1 - Cadastrar Abastecimento");
-        System.out.println("2 - Relatorio de Consumo");
-        System.out.println("0 - Sair");
-        System.out.print("Escolha: ");
+        System.out.println("*** SISTEMA DE FROTA E COMBUSTIVEL ***");
+        System.out.println("[1] Cadastrar Novo Abastecimento");
+        System.out.println("[2] Exibir Eficiencia e Relatorio");
+        System.out.println("[0] Fechar Sistema");
+        System.out.print("Opcao desejada: ");
     }
 
     public static void cadastrarAbastecimento(Scanner entrada) {}
