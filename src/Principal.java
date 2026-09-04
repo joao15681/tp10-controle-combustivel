@@ -1,3 +1,4 @@
+java
 import java.util.Scanner;
 
 public class Principal {
@@ -34,11 +35,11 @@ public class Principal {
     }
 
     public static void exibirMenu() {
-        System.out.println(" Controle de Combustivel ");
-        System.out.println("1. Registrar Abastecimento");
-        System.out.println("2. Relatorio de Consumo");
-        System.out.println("0. Sair");
-        System.out.print("Escolha: ");
+        System.out.println("*** SISTEMA DE FROTA E COMBUSTIVEL ***");
+        System.out.println("[1] Cadastrar Novo Abastecimento");
+        System.out.println("[2] Exibir Eficiencia e Relatorio");
+        System.out.println("[0] Fechar Sistema");
+        System.out.print("Opcao desejada: ");
     }
 
     public static void cadastrarAbastecimento(Scanner entrada) {
@@ -90,7 +91,57 @@ public class Principal {
         System.out.println("Abastecimento cadastrado com sucesso!\n");
     }
 
-    public static double calcularConsumoMedio(double km, double lit) { return 0; }
-    public static double calcularCustoPorKm(double valor, double km) { return 0; }
-    public static void exibirRelatorioConsumo() {}
+    public static double calcularConsumoMedio(double km, double lit) {
+        if (lit == 0) return 0;
+        return km / lit;
+    }
+
+    public static double calcularCustoPorKm(double valor, double km) {
+        if (km == 0) return 0;
+        return valor / km;
+    }
+
+    public static void exibirRelatorioConsumo() {
+        if (totalRegistros == 0) {
+            System.out.println("\nNenhum abastecimento cadastrado ainda.\n");
+            return;
+        }
+
+        System.out.println("\n==========================================================================");
+        System.out.println("                       RELATORIO DE CONSUMO E FROTA                       ");
+        System.out.println("==========================================================================");
+        System.out.printf("%-10s | %-10s | %-12s | %-10s | %-10s | %-10s\n", 
+                          "PLACA", "LITROS", "VALOR (R$)", "KM", "KM/L", "R$/KM");
+        System.out.println("--------------------------------------------------------------------------");
+
+        double totalLitros = 0;
+        double totalValor = 0;
+        double totalKm = 0;
+        int indiceMaisEconomico = 0;
+        double melhorKmL = -1;
+
+        for (int i = 0; i < totalRegistros; i++) {
+            double kmL = calcularConsumoMedio(quilometragens[i], litros[i]);
+            double rsKm = calcularCustoPorKm(valoresPagos[i], quilometragens[i]);
+
+            totalLitros += litros[i];
+            totalValor += valoresPagos[i];
+            totalKm += quilometragens[i];
+
+            if (kmL > melhorKmL) {
+                melhorKmL = kmL;
+                indiceMaisEconomico = i;
+            }
+
+            System.out.printf("%-10s | %-10.2f | R$ %-9.2f | %-10.2f | %-10.2f | R$ %-8.2f\n",
+                              placas[i], litros[i], valoresPagos[i], quilometragens[i], kmL, rsKm);
+        }
+
+        System.out.println("--------------------------------------------------------------------------");
+        System.out.printf("TOTAIS FROTA: Litros: %.2fL | Custo: R$ %.2f | Km Total: %.2f km\n", 
+                          totalLitros, totalValor, totalKm);
+        System.out.println("VEICULO MAIS ECONOMICO: " + placas[indiceMaisEconomico] + 
+                           " (" + String.format("%.2f", melhorKmL) + " km/L)");
+        System.out.println("==========================================================================\n");
+    }
 }
