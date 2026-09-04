@@ -51,5 +51,10 @@ public class Principal {
         if (km == 0) return 0;
         return valor / km;
     }
-    public static void exibirRelatorioConsumo() {}
+    public static void exibirRelatorioConsumo() {
+        if (totalRegistros == 0) {
+            System.out.println("\nNenhum abastecimento cadastrado ainda.\n");
+            return;
+        }
+    }
 }
